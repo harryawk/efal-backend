@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "Backend for e-FAL Fish Auction System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harryawk/efal-backend.git"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "bookshelf": "^0.10.4",
+    "cloudinary": "^1.9.0",
+    "cors": "^2.8.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "knex": "^0.13.0",
+    "moment": "^2.18.1",
+    "mysql": "^2.13.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harryawk/efal-backend/issues"
+  },
+  "homepage": "https://github.com/harryawk/efal-backend#readme"
+}
