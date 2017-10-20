@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (request, response) {
-    response.send('Hello World Success')
     var x = require('./model/database.js')
+    response.send('Hello World Success')
 });
 
 app.get('/literasi/6',  function(request, response) {
