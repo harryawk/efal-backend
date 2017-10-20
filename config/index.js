@@ -19,6 +19,29 @@ function loadEnv() {
                 charset: 'utf8'
             }
             // console.log('Config : ' + config);
+        } else if (process.env.NODE_ENV == 'direct') {
+            config['db_client'] = 'mysql';
+            config['db_environment'] = 'production';
+
+            var db_url = process.env.DATABASE_URL;
+            var user_pass = db_url.split('@')[0];
+            var host_db = db_url.split('@')[1];
+
+            var db_name = host_db.split('/')[1];
+            var db_host = host_db.split(':')[0];
+
+            var only_creds = user_pass.split('://')[1];
+
+            var db_user = only_creds.split(':')[0];
+            var db_pass = only_creds.split(':')[1];
+
+            config['connection'] = {
+                host: db_host,
+                port: 3306,
+                user: db_user,
+                password: db_pass,
+                database: db_name
+            }
         } else {
             config['db_client'] = 'mysql';
             config['db_environment'] = 'production';
