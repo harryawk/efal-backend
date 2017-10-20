@@ -20,7 +20,7 @@ function loadEnv() {
             }
             // console.log('Config : ' + config);
         } else {
-            config['db_client'] = 'postgresql';
+            config['db_client'] = 'mysql';
             config['db_environment'] = 'production';
 
             var db_url = process.env.DATABASE_URL;
@@ -37,7 +37,7 @@ function loadEnv() {
 
             config['connection'] = {
                 host: db_host,
-                port: 5432,
+                port: 3306,
                 user: db_user,
                 password: db_pass,
                 database: db_name
