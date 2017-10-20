@@ -15,6 +15,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function (request, response) {
     response.send('Hello World Success')
+    var x = require('./model/database.js')
 });
 
 app.get('/literasi/6',  function(request, response) {
