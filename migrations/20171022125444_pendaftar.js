@@ -1,15 +1,15 @@
 
 exports.up = function(knex, Promise) {
-  knex.schema.createTableIfNotExists('pendaftar', function (table) {
-  	table.increments().unsigend()
-  	table.integer('sesi_id')
-  	table.integer('peserta_id')
-
-  	table.foreign('sesi_id').references('id').inTable('sesi').onDelete('cascade')
-  	table.foreign('peserta_id').references('id').inTable('peserta').onDelete('cascade')
+  return knex.schema.createTableIfNotExists('pendaftar', function (table) {
+  	table.increments().unsigned()
+  	table.integer('sesi_id').unsigned()
+  	table.foreign('sesi_id').references('id').inTable('sesi').onUpdate('restrict').onDelete('cascade')
+		
+  	table.integer('peserta_id').unsigned()
+  	table.foreign('peserta_id').references('id').inTable('peserta').onUpdate('restrict').onDelete('cascade')
   })
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTable('pendaftar')
+  return knex.schema.dropTable('pendaftar')
 };

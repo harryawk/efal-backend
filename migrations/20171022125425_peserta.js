@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  knex.schema.createTableIfNotExists('peserta', function (table) {
+  return knex.schema.createTableIfNotExists('peserta', function (table) {
   	table.increments().unsigned()
   	table.string('nik', 16)
   	table.string('nama lengkap')
@@ -12,5 +12,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTable('peserta')
+  return knex.schema.dropTable('peserta')
 };
