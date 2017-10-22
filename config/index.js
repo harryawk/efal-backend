@@ -24,7 +24,7 @@ function loadEnv() {
             config['db_client'] = 'postgresql';
             config['db_environment'] = 'production';
 
-            var db_url = process.env.DATABASE_URL;
+            var db_url = process.env.HEROKU_POSTGRESQL_BROWN_URL;
             var user_pass = db_url.split('@')[0];
             var host_db = db_url.split('@')[1];
 
