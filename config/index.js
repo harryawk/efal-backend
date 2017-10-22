@@ -14,6 +14,7 @@ function loadEnv() {
             config['connection'] = {
                 host: 'localhost',
                 user: 'root',
+                password: process.env.MYSQL_PASS ? process.env.MYSQL_PASS : '',
                 port: 3306,
                 database: 'efal_db',
                 charset: 'utf8'
