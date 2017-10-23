@@ -1,9 +1,9 @@
 var helper = require('./database.js');
 
 Model = helper.bookshelf.Model.extend({
-  tableName: 'hasil_nelayan'
+  tableName: 'nelayan'
 });
-model = helper.bookshelf.model('HasilNelayan', Model);
+model = helper.bookshelf.model('Nelayan', Model);
 
 module.exports = {
   model
