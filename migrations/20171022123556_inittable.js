@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
       table.string('nama')
       table.string('telepon')
       table.string('email')
+      table.string('alamat')
       table.string('url_gambar')
     }),
     

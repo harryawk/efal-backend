@@ -18,11 +18,11 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.alterTable('hasil_nelayan', function(table) {
-      table.dropForeign('hasil_ikan_id')
-      table.dropForeign('nelayan_id')
-      table.dropForeign('tpi_id')
-    }),
+    // knex.schema.alterTable('hasil_nelayan', function(table) {
+    //   table.dropForeign('hasil_ikan_id')
+    //   table.dropForeign('nelayan_id')
+    //   table.dropForeign('tpi_id')
+    // }),
     knex.schema.dropTableIfExists('hasil_nelayan')
   ])
 };

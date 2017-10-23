@@ -12,5 +12,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTable('hubungan_tpi')  
+  return knex.schema.dropTableIfExists('hubungan_tpi')  
 };

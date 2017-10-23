@@ -22,10 +22,10 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.alterTable('sesi', function (table) {
-      table.dropForeign('hasil_ikan_id')
-      table.dropForeign('pemenang_id')
-    }),
+    // knex.schema.alterTable('sesi', function (table) {
+    //   table.dropForeign('hasil_ikan_id')
+    //   table.dropForeign('pemenang_id')
+    // }),
     knex.schema.dropTableIfExists('sesi')
   ])
 };
