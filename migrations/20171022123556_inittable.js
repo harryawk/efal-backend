@@ -16,6 +16,7 @@ exports.up = function(knex, Promise) {
       table.string('nama_lengkap')
       table.string('nama_akun')
       table.string('nomor_telepon')
+      table.string('password')
     }),
 
     knex.schema.createTableIfNotExists('hasil_ikan', function(table){

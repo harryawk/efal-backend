@@ -18,21 +18,26 @@ app.get('/', function (request, response) {
     response.send('Hello World Success')
 });
 
-app.get('/literasi/6',  function(request, response) {
+app.get('/tpi', function(request, response) {
 
-    var h = require('./model/hasil_nelayan')
+    var tpi = require('./model/tpi')
 
-    h.model.fetchAll().then(function (model) {
+    tpi.model.fetchAll().then(function(model) {
         if (model) {
-            
+            response.json(model.toJSON())
         } else {
-            response.send('Model is undefined')
+            response.status(500).json({
+                error: "Error: Model is undefined"
+            })
         }
-    }).catch(function (err) {
-        console.log(err)
-        response.send('Error: ' + err)
     })
-});
+    .catch(function(err) {
+        console.log(err)
+        response.status(500).json({
+            error: "Error: Cannot fetching TPI"
+        })
+    })
+})
 
 app.listen(app.get('port'), function () {
     console.log('Node app is running on port', app.get('port'));
