@@ -95,7 +95,7 @@ app.post('/hasil/nelayan', function(request, response) {
                     console.log('----------------------')
         
                     var berat_sekarang = model.get('berat_total')
-                    berat_sekarang += berat
+                    berat_sekarang += parseInt(berat)
         
                     // Update hasil_ikan berat
                     new hasil_ikan.model({
