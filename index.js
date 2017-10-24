@@ -124,6 +124,7 @@ app.post('/hasil/nelayan', function(request, response) {
                             console.log(tanggal)
         
                             console.log('new berat')
+                            console.log(berat_sekarang)
         
                             response.json({
                                 sukses: true
