@@ -46,7 +46,7 @@ app.get('/tpi', function(request, response) {
     })
 })
 
-app.post('/hasil/nelayan', async function(request, response) {
+app.post('/hasil/nelayan', function(request, response) {
 
     var hasil_nelayan = require('./model/hasil_nelayan')
     var nelayan = require('./model/nelayan')
