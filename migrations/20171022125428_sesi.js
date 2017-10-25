@@ -14,7 +14,6 @@ exports.up = function(knex, Promise) {
       table.date('tanggal_sesi')
       table.integer('mulai_harga').unsigned()
       table.integer('akhir_harga').unsigned()
-      table.string('kode_kemenangan')
       table.integer('status').unsigned()
     })
   ])

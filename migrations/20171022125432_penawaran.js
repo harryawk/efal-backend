@@ -7,7 +7,9 @@ exports.up = function(knex, Promise) {
   	table.bigInteger('harga_tawaran')
 		
   	table.integer('peserta_id').unsigned()
-  	table.foreign('peserta_id').references('id').inTable('peserta').onDelete('cascade')
+		table.foreign('peserta_id').references('id').inTable('peserta').onDelete('cascade')
+		
+		table.string('kode_kemenangan')
   })
 };
 
