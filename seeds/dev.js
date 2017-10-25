@@ -26,7 +26,10 @@ exports.seed = function(knex, Promise) {
   var faker = require('faker');
   var Chance = require('chance');
   var chance = new Chance(1);
-  var moment = require('moment')
+  var moment = require('moment');
+  var config = require('../config');
+
+  console.log(config.db_client)
 
   var ikan_ikan = ["cakalang", "kuweh", "layang deles", "teri", "kembung", "kurisi", "swanggi", "lencam", "tongkol banyar", "udang dogol"]
 
@@ -42,17 +45,17 @@ exports.seed = function(knex, Promise) {
     knex('hasil_ikan').del().then(function (c) { console.log('delete hasil_ikan') }),
     knex('nelayan').del().then(function (c) { console.log('delete nelayan') }),
     knex('tpi').del().then(function (c) { console.log('delete tpi') }),
-    knex.raw('ALTER TABLE hubungan_tpi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hubungan_tpi') }),
-    knex.raw('ALTER TABLE penawaran AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment penawaran') }),
-    knex.raw('ALTER TABLE pendaftar AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment pendaftar') }),
-    knex.raw('ALTER TABLE sesi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment sesi') }),
-    knex.raw('ALTER TABLE peserta AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment peserta') }),
-    knex.raw('ALTER TABLE admin AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment admin') }),
-    knex.raw('ALTER TABLE loket AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment loket') }),
-    knex.raw('ALTER TABLE hasil_nelayan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hasil_nelayan') }),
-    knex.raw('ALTER TABLE hasil_ikan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hasil_ikan') }),
-    knex.raw('ALTER TABLE nelayan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment nelayan') }),
-    knex.raw('ALTER TABLE tpi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment tpi') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE hubungan_tpi_id_seq RESTART WITH 1' : 'ALTER TABLE hubungan_tpi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hubungan_tpi') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE penawaran_id_seq RESTART WITH 1' : 'ALTER TABLE penawaran AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment penawaran') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE pendaftar_id_seq RESTART WITH 1' : 'ALTER TABLE pendaftar AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment pendaftar') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE sesi_id_seq RESTART WITH 1' : 'ALTER TABLE sesi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment sesi') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE peserta_id_seq RESTART WITH 1' : 'ALTER TABLE peserta AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment peserta') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE admin_id_seq RESTART WITH 1' : 'ALTER TABLE admin AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment admin') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE loket_id_seq RESTART WITH 1' : 'ALTER TABLE loket AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment loket') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE hasil_nelayan_id_seq RESTART WITH 1' : 'ALTER TABLE hasil_nelayan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hasil_nelayan') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE hasil_ikan_id_seq RESTART WITH 1' : 'ALTER TABLE hasil_ikan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hasil_ikan') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE nelayan_id_seq RESTART WITH 1' : 'ALTER TABLE nelayan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment nelayan') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE tpi_id_seq RESTART WITH 1' : 'ALTER TABLE tpi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment tpi') }),
   ]
   
   // pre-defined before auction even started
