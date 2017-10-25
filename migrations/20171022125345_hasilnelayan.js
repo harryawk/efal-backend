@@ -9,9 +9,9 @@ exports.up = function(knex, Promise) {
       table.foreign('nelayan_id').references('id').inTable('nelayan').onUpdate('restrict').onDelete('cascade')
       table.integer('hasil_ikan_id').unsigned()
       table.foreign('hasil_ikan_id').references('id').inTable('hasil_ikan').onUpdate('restrict').onDelete('cascade')
-      table.decimal('berat')
+      table.decimal('berat', 15, 2)
       table.string('url_gambar')
-      table.datetime('tanggal')
+      table.date('tanggal')
     })
   ])
 };

@@ -26,6 +26,7 @@ exports.seed = function(knex, Promise) {
   var faker = require('faker');
   var Chance = require('chance');
   var chance = new Chance(1);
+  var moment = require('moment')
 
   var ikan_ikan = ["cakalang", "kuweh", "layang deles", "teri", "kembung", "kurisi", "swanggi", "lencam", "tongkol banyar", "udang dogol"]
 
@@ -41,6 +42,17 @@ exports.seed = function(knex, Promise) {
     knex('hasil_ikan').del().then(function (c) { console.log('delete hasil_ikan') }),
     knex('nelayan').del().then(function (c) { console.log('delete nelayan') }),
     knex('tpi').del().then(function (c) { console.log('delete tpi') }),
+    knex.raw('ALTER TABLE hubungan_tpi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hubungan_tpi') }),
+    knex.raw('ALTER TABLE penawaran AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment penawaran') }),
+    knex.raw('ALTER TABLE pendaftar AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment pendaftar') }),
+    knex.raw('ALTER TABLE sesi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment sesi') }),
+    knex.raw('ALTER TABLE peserta AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment peserta') }),
+    knex.raw('ALTER TABLE admin AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment admin') }),
+    knex.raw('ALTER TABLE loket AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment loket') }),
+    knex.raw('ALTER TABLE hasil_nelayan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hasil_nelayan') }),
+    knex.raw('ALTER TABLE hasil_ikan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hasil_ikan') }),
+    knex.raw('ALTER TABLE nelayan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment nelayan') }),
+    knex.raw('ALTER TABLE tpi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment tpi') }),
   ]
   
   // pre-defined before auction even started
@@ -135,15 +147,18 @@ exports.seed = function(knex, Promise) {
   // Insert HasilIkan
   console.log('Insert HasilIkan')
   for (var i = 1; i <= 10; i++) {
-    var x = i - 1
-    tasks.push(
-      knex('hasil_ikan').insert({
-        id: i,
-        jenis_ikan: ikan_ikan[x],
-        berat_total: random(100, 400),
-        url_gambar: faker.image.imageUrl()
-      })
-    )
+    for (var j = 1; j <= 10; j++) {
+      var x = i - 1
+      tasks.push(
+        knex('hasil_ikan').insert({
+          jenis_ikan: ikan_ikan[x],
+          berat_total: random(100, 400),
+          url_gambar: faker.image.imageUrl(),
+          tpi_id: j,
+          tanggal: moment().add(j, 'days').minute(0).hour(0).second(0).format('YYYY-MM-DD')
+        })
+      )
+    }
   }
   
   // return Promise.each(tasks, function (t) {

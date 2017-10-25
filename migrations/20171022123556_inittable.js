@@ -23,16 +23,19 @@ exports.up = function(knex, Promise) {
     knex.schema.createTableIfNotExists('hasil_ikan', function(table){
       table.increments().unsigned()
       table.string('jenis_ikan')
-      table.decimal('berat_total')
+      table.decimal('berat_total', 15, 2)
       table.string('url_gambar')
+      table.date('tanggal')
+      table.integer('tpi_id').unsigned()
+      table.foreign('tpi_id').references('id').inTable('tpi').onUpdate('restrict').onDelete('cascade')
     })
   ])
 };
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTableIfExists('tpi'),
+    knex.schema.dropTableIfExists('hasil_ikan'),
     knex.schema.dropTableIfExists('nelayan'),
-    knex.schema.dropTableIfExists('hasil_ikan')
+    knex.schema.dropTableIfExists('tpi'),
   ])
 };
