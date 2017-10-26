@@ -8,6 +8,8 @@ exports.up = function(knex, Promise) {
       table.string('email')
       table.string('alamat')
       table.string('url_gambar')
+      table.time('jam_buka')
+      table.time('jam_tutup')
     }),
     
     knex.schema.createTableIfNotExists('nelayan', function(table) {
