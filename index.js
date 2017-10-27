@@ -44,7 +44,7 @@ app.post('/hasil/nelayan/delete', require('./handler/admin/hasil_nelayan_delete_
 app.post('/masuk/peserta', require('./handler/client/login_peserta'))
 
 app.post('/daftar/peserta', require('./handler/client/daftar_peserta'))
-app.post('/sesi', require('./handler/admin/sesi_post'))
+// app.post('/sesi', require('./handler/admin/sesi_post'))
 
 app.get('/hello', require('./handler/hello'))
 
