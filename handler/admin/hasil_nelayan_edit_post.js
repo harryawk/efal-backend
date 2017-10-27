@@ -1,9 +1,10 @@
 module.exports = function (request, response) {
 
-  var hasil_ikan = require('../../model/hasil_ikan')
-  var nelayan = require('../../model/nelayan')
-  var tpiadmin = require('../../model/admin_tpi')
-  var hasil_nelayan = require('../../model/hasil_nelayan')
+  var hasil_ikan = require('./model/hasil_ikan')
+  var nelayan = require('./model/nelayan')
+  var tpiadmin = require('./model/admin_tpi')
+  var hasil_nelayan = require('./model/hasil_nelayan')
+  var ikan = require('./model/ikan')
 
   var body = request.body
   if (!body['api_key']) {
@@ -20,7 +21,7 @@ module.exports = function (request, response) {
     var url_gambar = body['gambar']
 
     var nelayan_id
-    var hasil_ikan_id
+    var ikan_id
 
     tpiadmin.model.where({ api_key: body['api_key'] ? body['api_key'] : '' }).fetch().then(function (model) {
       if (model) {
@@ -36,9 +37,51 @@ module.exports = function (request, response) {
         })
         return;
       }
-      nelayan.model.where({ nama_akun: nama_akun }).fetch().then(function (model) {
-        nelayan_id = model.get('id')
-        console.log(nelayan_id)
+
+
+      var berat_lama_nelayan
+      var berat_lama_hasil_ikan
+      var hasil_ikan_id
+      hasil_nelayan.model.where({id: hasil_nelayan_id}).fetch({withRelated: ['hasil_ikan']}).then(function(model) {
+        if (model) {
+          berat_lama_nelayan = parseFloat(model.get('berat'))
+          hasil_ikan_id = parseInt(model.get('hasil_ikan_id'))
+          berat_lama_hasil_ikan = parseFloat(model.toJSON()['hasil_ikan']['berat_total'])
+          nelayan.model.where({nama_akun: nama_akun}).fetch().then(function(model) {
+            if (model) {
+              nelayan_id = model.get('id')
+              ikan.model.where({jenis_ikan: jenis_ikan}).fetch().then(function(model) {
+                if (model) {
+                  ikan_id = model.get('id')
+                  var the_berat_hasil_ikan = berat_lama_hasil_ikan
+                  new hasil_ikan.model({id: hasil_ikan_id}).save({
+
+                  }, {patch: true})
+                } else {
+                  response.json({
+                    msg: "ERROR: Ikan not found"
+                  })
+                  return;
+                }
+              })
+            } else {
+              response.json({
+                msg: "ERROR: Nelayan not found"
+              })
+              return;
+            }
+          })
+        } else {
+          response.json({
+            msg: "ERROR: Cannot fetch hasil_nelayan_id with id = " + hasil_nelayan_id
+          })
+          return
+        }
+      })
+
+      // nelayan.model.where({ nama_akun: nama_akun }).fetch().then(function (model) {
+      //   nelayan_id = model.get('id')
+      //   console.log(nelayan_id)
 
         // hasil_ikan.model.where({jenis_ikan: jenis_ikan}).fetch().then(function(model) {
         //     hasil_ikan_id = model.get('id')
@@ -103,7 +146,7 @@ module.exports = function (request, response) {
         // }) // add catch - fetch hasil_ikan
 
 
-      }) // add catch - fetch nelayan
+      // }) // add catch - fetch nelayan
 
     }) // add catch - fetch apikeys
   }

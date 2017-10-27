@@ -45,6 +45,7 @@ exports.seed = function(knex, Promise) {
     knex('hasil_ikan').del().then(function (c) { console.log('delete hasil_ikan') }),
     knex('nelayan').del().then(function (c) { console.log('delete nelayan') }),
     knex('tpi').del().then(function (c) { console.log('delete tpi') }),
+    knex('ikan').del().then(function (c) { console.log('delete ikan') }),
     knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE hubungan_tpi_id_seq RESTART WITH 1' : 'ALTER TABLE hubungan_tpi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hubungan_tpi') }),
     knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE penawaran_id_seq RESTART WITH 1' : 'ALTER TABLE penawaran AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment penawaran') }),
     knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE pendaftar_id_seq RESTART WITH 1' : 'ALTER TABLE pendaftar AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment pendaftar') }),
@@ -56,9 +57,23 @@ exports.seed = function(knex, Promise) {
     knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE hasil_ikan_id_seq RESTART WITH 1' : 'ALTER TABLE hasil_ikan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment hasil_ikan') }),
     knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE nelayan_id_seq RESTART WITH 1' : 'ALTER TABLE nelayan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment nelayan') }),
     knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE tpi_id_seq RESTART WITH 1' : 'ALTER TABLE tpi AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment tpi') }),
+    knex.raw(config.db_client == 'postgresql' ? 'ALTER SEQUENCE ikan_id_seq RESTART WITH 1' : 'ALTER TABLE ikan AUTO_INCREMENT = 1').then(function (c) { console.log('reset auto_increment ikan') }),
   ]
   
   // pre-defined before auction even started
+
+  // Insert Ikan
+  console.log('Insert Ikan')
+  for (var i = 1; i <= 10; i++) {
+    var m = i - 1
+    tasks.push(
+      knex('ikan').insert({
+        id: i,
+        jenis_ikan: ikan_ikan[m],
+        url_gambar: "http://lorempixel.com/640/480/animals/"
+      })
+    )
+  }
 
   // Insert TPI
   console.log('Insert TPI')
@@ -70,7 +85,6 @@ exports.seed = function(knex, Promise) {
         telepon: chance.phone(),
         email: faker.internet.email(),
         alamat: faker.address.streetAddress(),
-        // url_gambar: faker.image.animals()
         url_gambar: "http://lorempixel.com/640/480/animals/"
       })
     )
@@ -158,9 +172,8 @@ exports.seed = function(knex, Promise) {
       var the_date = moment().add(j, 'days').minute(0).hour(0).second(0).format('YYYY-MM-DD')
       tasks.push(
         knex('hasil_ikan').insert({
-          jenis_ikan: ikan_ikan[x],
           berat_total: the_berat,
-          url_gambar: the_url_gambar,
+          ikan_id: i,
           tpi_id: j,
           tanggal: the_date
         })
@@ -173,18 +186,11 @@ exports.seed = function(knex, Promise) {
           tpi_id: i,
           nelayan_id: j,
           hasil_ikan_id: y,
+          ikan_id: i,
           berat: the_berat,
-          url_gambar: the_url_gambar,
           tanggal: the_date
         })
       )
-    }
-  }
-
-  console.log('Insert HasilNelayan')
-  for (var i = 1; i <= 10; i++) {
-    for (var j = 1; j <= 10; j++) {
-      var x = i - 1
     }
   }
   
