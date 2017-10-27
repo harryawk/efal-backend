@@ -33,7 +33,7 @@ app.get('/tpi/proses', require('./handler/client/tpi_proses_get'))
 
 app.post('/hasil/nelayan', require('./handler/admin/hasil_nelayan_post'))
 
-app.get('/hasil/total', require('./handler/hasil_total_get'))
+app.get('/hasil/total', require('./handler/admin/hasil_total_get'))
 
 app.get('/hasil/nelayan/ikan', require('./handler/admin/hasil_nelayan_ikan_get'))
 
