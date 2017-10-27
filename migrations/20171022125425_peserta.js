@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
   	table.string('email')
 		table.string('password')
 		table.string('api_key')
+		table.integer('uang_komitmen').unsigned()
   })
 };
 

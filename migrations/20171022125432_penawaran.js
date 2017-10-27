@@ -8,6 +8,8 @@ exports.up = function(knex, Promise) {
 		
   	table.integer('peserta_id').unsigned()
 		table.foreign('peserta_id').references('id').inTable('peserta').onDelete('cascade')
+
+		table.decimal('berat_kebutuhan')
 		
 		table.string('kode_kemenangan')
   })
