@@ -149,18 +149,42 @@ exports.seed = function(knex, Promise) {
 
   // Insert HasilIkan
   console.log('Insert HasilIkan')
+  var y = 0
   for (var i = 1; i <= 10; i++) {
     for (var j = 1; j <= 10; j++) {
       var x = i - 1
+      var the_berat = random(100, 400)
+      var the_url_gambar = faker.image.imageUrl()
+      var the_date = moment().add(j, 'days').minute(0).hour(0).second(0).format('YYYY-MM-DD')
       tasks.push(
         knex('hasil_ikan').insert({
           jenis_ikan: ikan_ikan[x],
-          berat_total: random(100, 400),
-          url_gambar: faker.image.imageUrl(),
+          berat_total: the_berat,
+          url_gambar: the_url_gambar,
           tpi_id: j,
-          tanggal: moment().add(j, 'days').minute(0).hour(0).second(0).format('YYYY-MM-DD')
+          tanggal: the_date
         })
       )
+      y++;
+      console.log('Insert HasilNelayan')
+      tasks.push(
+        knex('hasil_nelayan').insert({
+          id: y,
+          tpi_id: i,
+          nelayan_id: j,
+          hasil_ikan_id: y,
+          berat: the_berat,
+          url_gambar: the_url_gambar,
+          tanggal: the_date
+        })
+      )
+    }
+  }
+
+  console.log('Insert HasilNelayan')
+  for (var i = 1; i <= 10; i++) {
+    for (var j = 1; j <= 10; j++) {
+      var x = i - 1
     }
   }
   

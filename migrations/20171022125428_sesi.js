@@ -8,6 +8,8 @@ exports.up = function(knex, Promise) {
       table.foreign('hasil_ikan_id').references('id').inTable('hasil_ikan').onUpdate('restrict').onDelete('cascade')
       table.integer('pemenang_id').unsigned()
       table.foreign('pemenang_id').references('id').inTable('peserta').onUpdate('restrict').onDelete('cascade')
+      table.integer('tpi_id').unsigned()
+      table.foreign('tpi_id').references('id').inTable('tpi').onUpdate('restrict').onDelete('cascade')
       table.string('jenis_ikan')
       table.datetime('jam_mulai')
       table.datetime('jam_selesai')
