@@ -20,15 +20,15 @@ module.exports = function (request, response) {
 				return;                
 			}
 
-			sesi.model.where({tpi_id: body['id_tpi']}.where('DATE(tanggal)', '=', tanggal).then(function (sesi_model) {
-				response.json({
-					daftar: tpi_list
-				})
-			}).catch(function(err) {
-				console.log('Fetching failed')
-				console.log(err)
-				response.status(500).send("Cannot retrieve TPI: " + err)                
-			})
+			// sesi.model.where({tpi_id: body['id_tpi']}.where('DATE(tanggal)', '=', tanggal).then(function (sesi_model) {
+			// 	response.json({
+			// 		daftar: tpi_list
+			// 	})
+			// }).catch(function(err) {
+			// 	console.log('Fetching failed')
+			// 	console.log(err)
+			// 	response.status(500).send("Cannot retrieve TPI: " + err)                
+			// })
 		}).catch(function(err) {
 			console.log('Fetching failed')
 			console.log(err)

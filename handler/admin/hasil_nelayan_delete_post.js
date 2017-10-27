@@ -21,6 +21,7 @@ module.exports = function(request, response) {
           response.json({
             msg: "Invalid Credentials"
           })
+          return
         }
       } else {
         response.json({
@@ -28,10 +29,23 @@ module.exports = function(request, response) {
         })
         return;
       }
-      hasil_nelayan.model({ id: hasil_nelayan_id }).destroy().then(function (model) {
+      var the_model
+      new hasil_nelayan.model({ id: hasil_nelayan_id }).destroy().then(function (model) {
         if (model) {
-          response.json({
-            "sukses": true
+          the_model = model.toJSON()
+          console.log(the_model)
+          hasil_nelayan.helper.bookshelf.knex.raw('ALTER TABLE hasil_nelayan AUTO_INCREMENT = 1').then(function (c) { 
+            console.log('reset auto_increment hasil_nelayan') 
+            response.json({
+              "sukses": true
+            })
+          })
+          .catch(function(err) {
+            new hasil_nelayan.model(the_model).save().then(function(model) {
+              response.json({
+                msg: "ERROR: Cannot reset auto_increment in table hasil_nelayan"
+              })
+            })
           })
         } else {
           response.status(500).json({
@@ -39,6 +53,13 @@ module.exports = function(request, response) {
           })
         }
       }) // add catch - destroy nelayan
+      .catch(function(err) {
+        new hasil_nelayan.model(the_model).save().then(function(model) {
+          response.json({
+            msg: "ERROR: Cannot reset auto_increment in table hasil_nelayan"
+          })
+        })
+      })
     }) // add catch - fetch apikeys
   }
 }

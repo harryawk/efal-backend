@@ -12,5 +12,6 @@ Model = helper.bookshelf.Model.extend({
 model = helper.bookshelf.model('HasilNelayan', Model);
 
 module.exports = {
-  model
+  model,
+  helper
 }
