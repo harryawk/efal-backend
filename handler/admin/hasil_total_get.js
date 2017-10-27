@@ -1,7 +1,7 @@
 module.exports = function (request, response) {
 
-  var hasil_ikan = require('./model/hasil_ikan')
-  var tpiadmin = require('./model/admin_tpi')
+  var hasil_ikan = require('../../model/hasil_ikan')
+  var tpiadmin = require('../../model/admin_tpi')
 
   var body = request.query
   if (!body['api_key']) {

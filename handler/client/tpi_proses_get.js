@@ -1,7 +1,7 @@
 module.exports = function (request, response) {
-  var peserta = require('./model/peserta')
-  var tpi = require('./model/tpi')
-  var sesi = require('./model/sesi')
+  var peserta = require('../../model/peserta')
+  var tpi = require('../../model/tpi')
+  var sesi = require('../../model/sesi')
 
   var body = request.query
   console.log(body)

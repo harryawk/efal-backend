@@ -29,7 +29,7 @@ app.get('/tpi', require('./handler/client/tpi_get'))
 
 app.post('/hasil/nelayan', require('./handler/admin/hasil_nelayan_post'))
 
-app.get('/hasil/total', require('./handler/hasil_total_get'))
+app.get('/hasil/total', require('./handler/admin/hasil_total_get'))
 
 app.get('/tpi/all', require('./handler/client/tpi_all_get'))
 
@@ -40,6 +40,10 @@ app.get('/hasil/nelayan/ikan', require('./handler/admin/hasil_nelayan_ikan_get')
 app.post('/hasil/nelayan/edit', require('./handler/admin/hasil_nelayan_edit_post'))
 
 app.post('/hasil/nelayan/delete', require('./handler/admin/hasil_nelayan_delete_post'))
+
+app.post('/masuk/peserta', require('./handler/client/login_peserta'))
+
+app.post('/daftar/peserta', require('./handler/client/daftar_peserta'))
 
 app.get('/hello', require('./handler/hello'))
 

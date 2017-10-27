@@ -1,6 +1,6 @@
 module.exports = function(request, response) {
 
-  var tpi = require('./model/tpi')
+  var tpi = require('../../model/tpi')
 
   tpi.model.fetchAll().then(function (model) {
     if (model) {

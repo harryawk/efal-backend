@@ -1,9 +1,9 @@
 module.exports = function (request, response) {
 
-  var hasil_ikan = require('./model/hasil_ikan')
-  var nelayan = require('./model/nelayan')
-  var tpiadmin = require('./model/admin_tpi')
-  var hasil_nelayan = require('./model/hasil_nelayan')
+  var hasil_ikan = require('../../model/hasil_ikan')
+  var nelayan = require('../../model/nelayan')
+  var tpiadmin = require('../../model/admin_tpi')
+  var hasil_nelayan = require('../../model/hasil_nelayan')
 
   var body = request.body
   if (!body['api_key']) {
