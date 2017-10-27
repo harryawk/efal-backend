@@ -1,7 +1,10 @@
 var helper = require('./database.js');
 
 Model = helper.bookshelf.Model.extend({
-  tableName: 'tpi'
+  tableName: 'tpi',
+  sesi: function() {
+  	return this.hasMany('Sesi', 'tpi_id')
+  }
 });
 model = helper.bookshelf.model('TPI', Model);
 

@@ -39,8 +39,6 @@ module.exports = function(request, response) {
           })
         }
       }) // add catch - destroy nelayan
-
     }) // add catch - fetch apikeys
-
   }
 }
