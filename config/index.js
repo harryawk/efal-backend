@@ -38,7 +38,7 @@ function loadEnv() {
 
             config['connection'] = {
                 host: db_host,
-                port: 5432,
+                port: 3306,
                 user: db_user,
                 password: db_pass,
                 database: db_name
