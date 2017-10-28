@@ -1,6 +1,6 @@
-module.exports = function(require, response) {
+module.exports = function (request, response) {
 	var sesi = require('../../model/sesi')
-	var admin = require('../../model/admin')
+	var admin = require('../../model/admin_tpi')
 	var hasil_ikan = require('../../model/hasil_ikan')
 
 	body = request.body
@@ -14,15 +14,16 @@ module.exports = function(require, response) {
 	    return;
 	}
 
-	admin.where({api_key: body['api_key']}).fetch().then(function (model) {
-		hasil_ikan.where({id: body['hasil_ikan_id']}).fetch().then(function (hasil_ikan_model) {
+	admin.model.where({api_key: body['api_key']}).fetch().then(function (model) {
+		hasil_ikan.model.where({id: body['hasil_ikan_id']}).fetch().then(function (hasil_ikan_model) {
 			new sesi.model({
-				tpi_id: model.get('tpi_id')
+				tpi_id: model.get('tpi_id'),
 				hasil_ikan_id: body['hasil_ikan_id'],
 				ikan_id: hasil_ikan_model.get('ikan_id'),
 				berat: hasil_ikan_model.get('berat'),
 				jam_mulai: body['jam_mulai'],
 				jam_selesai: body['jam_selesai'],
+				tanggal: body['tanggal'],
 				mulai_harga: body['mulai_harga'],
 				status: 1,
 
@@ -37,7 +38,6 @@ module.exports = function(require, response) {
 		        if (sesi_model) {
 		        	response.json({
 				        sukses: true,
-				        api_key: model.get('api_key'),
 				        pesan: "Berhasil"
 				    })
 				    return;
@@ -49,19 +49,17 @@ module.exports = function(require, response) {
 				}
 			}).catch(function (error) {
 				console.log('Transaction failed')
-				console.log(err)
-				response.status(500).send("Error while saving: " + err)
+				console.log(error)
+				response.status(500).send("Error while saving: " + error)
 			})
-
-
 		}).catch(function (error) {
 			console.log('Transaction failed')
-			console.log(err)
-			response.status(500).send("Error retrieve hasil ikan: " + err)
+			console.log(error)
+			response.status(500).send("Error retrieve hasil ikan: " + error)
 		})
 	}).catch(function (error) {
 		console.log('Transaction failed')
-		console.log(err)
-		response.status(500).send("Error while retrieve admin: " + err)
+		console.log(error)
+		response.status(500).send("Error while retrieve admin: " + error)
 	})
 }

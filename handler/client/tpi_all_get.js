@@ -4,6 +4,7 @@ module.exports = function (request, response) {
 
   var body = request.query
   console.log(body)
+  
   if (!body['api_key']) {
       response.status(403).json({
           msg: "No API Key"
