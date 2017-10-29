@@ -22,6 +22,7 @@ module.exports = function (request, response) {
                 response.json({
                     sukses: true,
                     api_key: model.get('api_key'),
+                    id_peserta: model.get('id'),
                     pesan: "Berhasil"
                 })
                 return;                
