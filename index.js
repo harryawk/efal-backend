@@ -64,6 +64,9 @@ app.post('/sesi/selesai', require('./handler/admin/sesi_selesai_post'))
 
 app.post('/sesi/tawar', require('./handler/admin/sesi_tawar_post'))
 
+app.post('/daftar/sesi/online', require('./handler/loket/daftar_sesi_online'))
+app.post('/daftar/sesi/offline', require('./handler/loket/daftar_sesi_offline'))
+
 app.get('/hello', require('./handler/hello'))
 
 app.listen(app.get('port'), function () {

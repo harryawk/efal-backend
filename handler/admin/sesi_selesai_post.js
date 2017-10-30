@@ -36,7 +36,7 @@ module.exports = function(request, response) {
 					count = count_result
 				})
 				sum_berat = 0
-				for (int i=0; i<count; i++) {
+				for (var i=0; i<count; i++) {
 					if (sum_berat < sesi_model.get('berat')) {
 						berat_dapat = 0
 						kode_kemenangan = randomString()
@@ -51,7 +51,7 @@ module.exports = function(request, response) {
 
 						new penawaran.model({id: model[i].get('berat_kebutuhan')}, {patch: true})
 							.save({
-								berat_dapat: berat_dapat
+								berat_dapat: berat_dapat,
 								kode_kemenangan: kode_kemenangan
 							})
 							.then(function (model) {
@@ -66,7 +66,7 @@ module.exports = function(request, response) {
 
 			response.json({
 				sukses: true,
-				daftar_penawar: 
+				// daftar_penawar: 
 			})
 			return;
 		}) // add catch - update hasil_nelayan

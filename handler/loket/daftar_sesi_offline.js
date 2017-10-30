@@ -35,8 +35,37 @@ module.exports = function (request, response) {
     }
 
     var id = body['id_sesi']
+    
+    var tpi_id = body['id_tpi']
+    var nama_akun = body['nama_akun']
+    var jumlah_sesi = body['jumlah_sesi']
+    var daftar_sesi = body['daftar_sesi']
+    var jumlah_uang_komitmen = body['jumlah_uang_komitmen']
 
-    response.send('Boilerplate')
+    var peserta_id
+
+    peserta.model.where({nama_akun: nama_akun}).fetch().then(function(model) {
+      if (model) {
+        peserta_id = model.get('id')
+        saved_models = []
+        for (var x = 0; x < daftar_sesi.length; x++) {
+          saved_models.push({
+            peserta_id: peserta_id,
+            sesi_id: daftar_sesi[x]
+          })
+        }
+        penawaran.model.collection(saved_models).invokeThen('save').then(function(model) {
+          console.log('done')
+          response.json({
+            sukses: true
+          })
+        })
+      } else {
+        response.json({
+          msg: "ERROR: Peserta Model is undefined"
+        })
+      }
+    })
 
   })
     .catch(function (error) {
