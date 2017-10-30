@@ -56,6 +56,10 @@ app.get('/sesi/all', require('./handler/admin/sesi_all_get'))
 
 app.post('/sesi/mulai', require('./handler/admin/sesi_mulai_post'))
 
+app.post('/sesi/selesai', require('./handler/admin/sesi_selesai_post'))
+
+app.post('/sesi/tawar', require('./handler/admin/sesi_tawar_post'))
+
 app.get('/hello', require('./handler/hello'))
 
 app.listen(app.get('port'), function () {
