@@ -24,8 +24,8 @@ module.exports = function (request, response) {
         response.json({
           msg: "Invalid Credentials"
         })
+        return;
       }
-      return;
     } else {
       response.json({
         msg: "Something is wrong with your API Key. Your data is not here. Contact the administrator."
@@ -34,8 +34,22 @@ module.exports = function (request, response) {
     }
 
     var id = body['id_sesi']
-
-    response.send('Boilerplate')
+    console.log(id)
+    
+    penawaran.model.where({sesi_id: id}).fetchAll({withRelated: ['peserta']}).then(function(model) {
+      console.log(model.toJSON())
+      if (model) {
+        result = []
+        for (var x = 0; x < model.toJSON().length; x++) {
+          result.push(model.toJSON()[x].peserta.nama_akun)
+        }
+        response.json({daftar_peserta: result})
+      } else {
+        response.json({
+          msg: "ERROR: Model is undefined"
+        })
+      }
+    })
 
 
   })
