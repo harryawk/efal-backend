@@ -1,4 +1,5 @@
 var helper = require('./database.js');
+require('./peserta')
 
 Model = helper.bookshelf.Model.extend({
   tableName: 'penawaran',
