@@ -79,6 +79,12 @@ app.get('/sesi/monitor', require('./handler/loket/sesi_monitor_get'))
 
 app.get('/sesi/monitor/all', require('./handler/loket/sesi_monitor_all_get'))
 
+app.get('/sesi/online', require('./handler/client/sesi_online_get'))
+
+app.post('/sesi/online', require('./handler/client/sesi_online_post'))
+
+app.post('/sesi/online/tawar', require('./handler/client/sesi_online_tawar_post'))
+
 app.get('/hello', require('./handler/hello'))
 
 server.listen(app.get('port'))
