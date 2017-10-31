@@ -66,7 +66,6 @@ module.exports = function(request, response) {
 							kode_kemenangan: kode_kemenangan
 						})
 						.then(function (model) {
-
 						})
 						.catch(function (error) {
 							console.log(error)

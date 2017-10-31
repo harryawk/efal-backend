@@ -48,7 +48,7 @@ app.post('/masuk/peserta', require('./handler/client/login_peserta'))
 app.post('/daftar/peserta', require('./handler/client/daftar_peserta'))
 // app.post('/sesi', require('./handler/admin/sesi_post'))
 
-app.post('/daftar/sesi/online', require('./handler/loket/daftar_sesi_online'))
+// app.post('/daftar/sesi/online', require('./handler/loket/daftar_sesi_online'))
 
 app.post('/sesi', require('./handler/admin/sesi_post'))
 
@@ -63,6 +63,13 @@ app.post('/sesi/peserta', require('./handler/admin/sesi_peserta_post'))
 app.post('/sesi/selesai', require('./handler/admin/sesi_selesai_post'))
 
 app.post('/sesi/tawar', require('./handler/admin/sesi_tawar_post'))
+
+app.post('/daftar/sesi/online', require('./handler/loket/daftar_sesi_online_post'))
+app.post('/daftar/sesi/offline', require('./handler/loket/daftar_sesi_offline_post'))
+
+app.post('/daftar/nelayan', require('./handler/loket/daftar_nelayan_post'))
+
+app.get('/sesi/monitor', require('./handler/loket/sesi_monitor_get'))
 
 app.get('/hello', require('./handler/hello'))
 
