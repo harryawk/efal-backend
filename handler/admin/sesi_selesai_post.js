@@ -24,17 +24,6 @@ module.exports = function(request, response) {
 		return
 	}
 
-	new sesi.model({ id: body['id_sesi'] })
-		.save({
-			status: 3,
-			jam_selesai: moment().format('YYYY-MM-DD HH:mm:ss')
-		}, { patch: true })
-		.then(function(sesi_model) {
-		}) // add catch - update hasil_nelayan
-		.catch(function (error) {
-			console.log(error)
-		})
-
 	sesi.model.where({id: body['id_sesi']}).fetch().then(function (sesi_model) {
 		//iterasi semua penawaran, kasih kode kemenangan buat semua yg dapet
 		console.log('This is sesi_model')
@@ -46,6 +35,7 @@ module.exports = function(request, response) {
 			console.log(sesi_model.get('berat'))
 			var count = model.length
 			var sum_berat = 0
+			var akhir_harga = 0
 			for (var i=0; i<count; i++) {
 				console.log(model.at(i))
 				if (sum_berat < sesi_model.get('berat')) {
@@ -59,6 +49,7 @@ module.exports = function(request, response) {
 						sum_berat += model.at(i).get('berat_kebutuhan')
 						berat_dapat = model.at(i).get('berat_kebutuhan')
 					}
+					akhir_harga += berat_dapat * model.at(i).get('harga_tawaran')
 
 					new penawaran.model({id: model.at(i).get('id')}, {patch: true})
 						.save({
@@ -73,6 +64,18 @@ module.exports = function(request, response) {
 				}
 			}
 
+			new sesi.model({ id: body['id_sesi'] })
+				.save({
+					status: 3,
+					jam_selesai: moment().format('YYYY-MM-DD HH:mm:ss'),
+					akhir_harga: akhir_harga
+				}, { patch: true })
+				.then(function(sesi_model) {
+				}) // add catch - update hasil_nelayan
+				.catch(function (error) {
+					console.log(error)
+				})
+
 			penawaran.model.where({sesi_id: body['id_sesi']})
 				.where('kode_kemenangan', '<>', 'NULL')
 				.fetchAll({withRelated: ['peserta']})
@@ -86,7 +89,6 @@ module.exports = function(request, response) {
 				.catch(function (error) {
 					console.log(error)
 				})
-
 		})
 		.catch(function (error) {
 			console.log(error)
