@@ -3,6 +3,8 @@ module.exports = function (request, response) {
   var tpi = require('../../model/tpi')
   var sesi = require('../../model/sesi')
   var moment = require('moment')
+  var penawaran = require('../../model/penawaran')
+  var pendaftar = require('../../model/pendaftar')
 
   var body = request.query
   console.log(body)
@@ -19,9 +21,9 @@ module.exports = function (request, response) {
         return;
       }
 
-      var tanggal = moment(body['tanggal']).format('YYYY-MM-DD')
+      sesi.model.where({id: body['id_sesi']}).fetch({withRelated: ['ikan']}).then(function (model) {
 
-      sesi.model.where({tpi_id: body['id_tpi'], status: 2}).fetchAll({withRelated: ['ikan']}).then(function (model) {
+        penawaran
         if (!model) {
           response.json({
             msg: "Tidak ada sesi pada tanggal tersebut"
@@ -29,7 +31,8 @@ module.exports = function (request, response) {
           return;                
         }
         response.json({
-          daftar_sesi: model,
+          sesi: model,
+          menang: 
         })
       }).catch(function(err) {
         console.log('Fetching failed')

@@ -1,6 +1,8 @@
 module.exports = function (request, response) {
 	var tpi = require('../../model/tpi')
 	var sesi = require('../../model/sesi')
+	var hasil_nelayan = require('../../model/hasil_nelayan')
+	var moment = require('moment')
 
 	var body = request.query
 	console.log(body)
@@ -12,7 +14,7 @@ module.exports = function (request, response) {
 	} else {
 		var tanggal = moment(body['tanggal']).format('YYYY-MM-DD')
 
-		sesi.model.where({tpi_id: body['id_tpi'], tanggal_sesi: tanggal}).fetch({withRelated: ['ikan']}).then(function (model) {
+		sesi.model.where({tpi_id: body['id_tpi'], tanggal_sesi: tanggal}).fetchAll({withRelated: ['ikan']}).then(function (model) {
 			if (!model) {
 				response.json({
 					msg: "Tidak ada sesi pada tanggal tersebut"
@@ -20,11 +22,11 @@ module.exports = function (request, response) {
 				return;                
 			}
 
-	        hasil_nelayan.model.where({tpi_id: body['id_tpi'], tanggal: date}).count().then(function (jumlah_nelayan) {
+	        hasil_nelayan.model.where({tpi_id: body['id_tpi'], tanggal: tanggal}).count().then(function (jumlah_nelayan) {
 
 				var total_harga = 0
 
-				for(var i=0; i<model.length; i++) {
+				for(var i = 0; i < model.length; i++) {
 					total_harga += model.at(i).get('akhir_harga')
 				}
 

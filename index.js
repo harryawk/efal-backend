@@ -36,6 +36,8 @@ app.get('/tpi/proses', require('./handler/client/tpi_proses_get'))
 
 app.get('/tpi/laporan', require('./handler/client/tpi_laporan_get'))
 
+app.get('/sesi/online/detail', require('./handler/client/sesi_detail_get'))
+
 app.post('/hasil/nelayan', require('./handler/admin/hasil_nelayan_post'))
 
 app.get('/hasil/total', require('./handler/admin/hasil_total_get'))
@@ -68,6 +70,7 @@ app.post('/sesi/selesai', require('./handler/admin/sesi_selesai_post'))
 app.post('/sesi/tawar', require('./handler/admin/sesi_tawar_post'))
 
 app.post('/daftar/sesi/online', require('./handler/loket/daftar_sesi_online_post'))
+
 app.post('/daftar/sesi/offline', require('./handler/loket/daftar_sesi_offline_post'))
 
 app.post('/daftar/nelayan', require('./handler/loket/daftar_nelayan_post'))
