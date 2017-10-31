@@ -87,6 +87,8 @@ app.post('/sesi/online', require('./handler/client/sesi_online_post'))
 
 app.post('/sesi/online/tawar', require('./handler/client/sesi_online_tawar_post'))
 
+app.post('/sesi/online/delete', require('./handler/client/sesi_online_delete_post'))
+
 app.get('/hello', require('./handler/hello'))
 
 server.listen(app.get('port'), function() {
