@@ -1,7 +1,10 @@
 var express = require('express');
 
 var cors = require('cors');
+var socketio = require('socket.io')
 var app = express();
+var server = require('http').Server(app);
+var io = socketio(server);
 var bodyParser = require('body-parser');
 var Promise = require('bluebird');
 var moment = require('moment');
@@ -75,6 +78,17 @@ app.get('/sesi/monitor/all', require('./handler/loket/sesi_monitor_all_get'))
 
 app.get('/hello', require('./handler/hello'))
 
-app.listen(app.get('port'), function () {
-    console.log('Node app is running on port', app.get('port'));
-});
+server.listen(app.get('port'))
+
+// app.listen(app.get('port'), function () {
+//     console.log('Node app is running on port', app.get('port'));
+// });
+
+io.on('connection', function(socket) {
+    socket.emit('something', { sukses: true })
+    socket.on('bid', function(data) {
+        console.log('the_data')
+        console.log(data)
+        console.log('==================')
+    })
+})
