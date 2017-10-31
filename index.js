@@ -71,6 +71,8 @@ app.post('/daftar/nelayan', require('./handler/loket/daftar_nelayan_post'))
 
 app.get('/sesi/monitor', require('./handler/loket/sesi_monitor_get'))
 
+app.get('/sesi/monitor/all', require('./handler/loket/sesi_monitor_all_get'))
+
 app.get('/hello', require('./handler/hello'))
 
 app.listen(app.get('port'), function () {
