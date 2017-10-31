@@ -38,6 +38,8 @@ app.get('/tpi/laporan', require('./handler/client/tpi_laporan_get'))
 
 app.get('/sesi/online/detail', require('./handler/client/sesi_detail_get'))
 
+app.get('/sesi/online/detail/penawar', require('./handler/client/sesi_detail_penawar_get'))
+
 app.post('/hasil/nelayan', require('./handler/admin/hasil_nelayan_post'))
 
 app.get('/hasil/total', require('./handler/admin/hasil_total_get'))

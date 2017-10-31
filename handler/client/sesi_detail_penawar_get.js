@@ -31,7 +31,7 @@ module.exports = function (request, response) {
                   var berat_sisa = sesi_model.get('berat')
 
                   for(var i=0; i<penawaran_model.length; i++){
-                    berat_sisa -=penawaran_model.at(i).get('berat_kebutuhan')
+                    berat_sisa -= penawaran_model.at(i).get('berat_kebutuhan')
                   }
 
                   if(berat_sisa<0) {
@@ -41,8 +41,6 @@ module.exports = function (request, response) {
                   console.log(penawaran_model)
                   if (penawaran_user.length == 0) {
                     response.json({
-                      sesi: sesi_model,
-                      terdaftar: true,
                       menang: false,
                       daftar_penawar: penawaran_model,
                       berat_sisa: berat_sisa
@@ -50,8 +48,6 @@ module.exports = function (request, response) {
                   }
                   else if (penawaran_user[0].get('kode_kemenangan') != null) {
                     response.json({
-                      sesi: sesi_model,
-                      terdaftar: true,
                       menang: true,
                       kode_kemenangan: penawaran_user[0].get('kode_kemenangan'),
                       hasil_kemenangan: penawaran_user,
