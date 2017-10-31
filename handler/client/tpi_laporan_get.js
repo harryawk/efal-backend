@@ -12,7 +12,7 @@ module.exports = function (request, response) {
 	} else {
 		var tanggal = moment(body['tanggal']).format('YYYY-MM-DD')
 
-		tpi.model.where({id: body['id_tpi']}).fetch().then(function (model) {
+		sesi.model.where({tpi_id: body['id_tpi'], tanggal_sesi: tanggal}).fetch({withRelated: ['ikan']}).then(function (model) {
 			if (!model) {
 				response.json({
 					msg: "Tidak ada sesi pada tanggal tersebut"
@@ -20,15 +20,21 @@ module.exports = function (request, response) {
 				return;                
 			}
 
-			// sesi.model.where({tpi_id: body['id_tpi']}.where('DATE(tanggal)', '=', tanggal).then(function (sesi_model) {
-			// 	response.json({
-			// 		daftar: tpi_list
-			// 	})
-			// }).catch(function(err) {
-			// 	console.log('Fetching failed')
-			// 	console.log(err)
-			// 	response.status(500).send("Cannot retrieve TPI: " + err)                
-			// })
+	        hasil_nelayan.model.where({tpi_id: body['id_tpi'], tanggal: date}).count().then(function (jumlah_nelayan) {
+
+				var total_harga = 0
+
+				for(var i=0; i<model.length; i++) {
+					total_harga += model.at(i).get('akhir_harga')
+				}
+
+				response.json({
+					hasil_lelang: model,
+					jumlah_nelayan: jumlah_nelayan,
+					jumlah_sesi: model.length,
+					total_harga: total_harga
+				})
+			})
 		}).catch(function(err) {
 			console.log('Fetching failed')
 			console.log(err)
