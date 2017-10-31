@@ -1,5 +1,6 @@
 var helper = require('./database.js');
 require ('./hubungan_tpi.js')
+require('./sesi')
 
 Model = helper.bookshelf.Model.extend({
   tableName: 'tpi',
@@ -11,6 +12,8 @@ Model = helper.bookshelf.Model.extend({
   }
 });
 model = helper.bookshelf.model('TPI', Model);
+
+model.where({id: 1}).fetchAll({withRelated: ['sesi']}).then(function(model) {console.log(model.toJSON())})
 
 module.exports = {
   model

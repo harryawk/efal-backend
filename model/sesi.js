@@ -7,16 +7,16 @@ require('./ikan')
 Model = helper.bookshelf.Model.extend({
   tableName: 'sesi',
   tpi: function() {
-  	return this.belongsTo('TPI', 'id')
+  	return this.belongsTo('TPI', 'tpi_id')
   },
   pemenang: function() {
-    return this.belongsTo('Peserta', 'id')
+    return this.belongsTo('Peserta', 'pemenang_id')
   },
   ikan: function() {
-    return this.belongsTo('Ikan', 'id')
+    return this.belongsTo('Ikan', 'ikan_id')
   },
   hasil_ikan: function() {
-    return this.belongsTo('HasilIkan', 'id')
+    return this.belongsTo('HasilIkan', 'hasil_ikan_id')
   }
 });
 model = helper.bookshelf.model('Sesi', Model);
