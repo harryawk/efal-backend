@@ -14,6 +14,8 @@ module.exports = function(request, response) {
     return
   }
 
+  //tambahin validasi + api_key umum
+
   tpi.model.where({id: body['id_tpi']}).fetch({withRelated: ['hubungan_tpi.tpi_terhubung']}).then(function (tpi_model) {
     var date = moment().subtract(1, 'days').format('YYYY-MM-DD')
     sesi.model.where({tpi_id: body['id_tpi'], status: 3, tanggal_sesi: date}).fetchAll({withRelated: ['ikan']}).then(function (model) {

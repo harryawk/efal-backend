@@ -11,11 +11,11 @@ module.exports = function (request, response) {
       })
   } else {
       peserta.model.where({api_key: body['api_key']}).fetch().then(function (model) {
-          if (!model) {
+          if (!model && body['api_key'] != 'umum') {
               response.json({
                   msg: "Something is wrong with your API Key. Your data is not here. Contact the administrator."
               })
-              return;                
+              return;
           }
 
           tpi.model.fetchAll().then(function (tpi_list) {
