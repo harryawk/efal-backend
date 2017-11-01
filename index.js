@@ -89,6 +89,10 @@ app.post('/sesi/online/tawar', require('./handler/client/sesi_online_tawar_post'
 
 app.post('/sesi/online/delete', require('./handler/client/sesi_online_delete_post'))
 
+app.get('/nelayan/all', require('./handler/nelayan_all_get'))
+
+app.get('/nelayan', require('./handler/nelayan_get'))
+
 app.get('/hello', require('./handler/hello'))
 
 server.listen(app.get('port'), function() {
