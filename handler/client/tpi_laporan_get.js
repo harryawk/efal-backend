@@ -12,6 +12,9 @@ module.exports = function (request, response) {
 			msg: "No API Key"
 		})
 	} else {
+
+  //tambahin validasi + api_key umum
+
 		var tanggal = moment(body['tanggal']).format('YYYY-MM-DD')
 
 		sesi.model.where({tpi_id: body['id_tpi'], tanggal_sesi: tanggal}).fetchAll({withRelated: ['ikan']}).then(function (model) {

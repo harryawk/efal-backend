@@ -14,7 +14,7 @@ module.exports = function (request, response) {
     })
   } else {
     peserta.model.where({ api_key: body['api_key'] }).fetch().then(function (peserta_model) {
-      if (!model) {
+      if (!model && body['api_key'] != 'umum') {
         response.json({
           msg: "Something is wrong with your API Key. Your data is not here. Contact the administrator."
         })
