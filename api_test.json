@@ -1,0 +1,302 @@
+[
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /hasil/nelayan",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /hasil/nelayan/edit",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /hasil/nelayan/delete",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "POST /masuk/peserta",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "POST /daftar/peserta",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /sesi",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /sesi/edit",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /sesi/mulai",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /sesi/peserta",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /sesi/selesai",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /sesi/tawar",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /daftar/admin",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "POST /masuk/admin",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "loket",
+      "endpoint": "POST /daftar/sesi/offline",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "loket",
+      "endpoint": "POST /daftar/nelayan",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "POST /sesi/online",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "POST /sesi/online/tawar",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "POST /sesi/online/delete",
+      "body": {
+
+      }
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "GET /tpi",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "GET /tpi/all",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "GET /tpi/proses",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "GET /tpi/laporan",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "GET /sesi/online/detail",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "GET /sesi/online/detail/penawar",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "GET /hasil/total",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "GET /hasil/nelayan/ikan",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "admin",
+      "endpoint": "GET /sesi/all",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "loket",
+      "endpoint": "GET /sesi/monitor",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "loket",
+      "endpoint": "GET /sesi/monitor/all",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "client",
+      "endpoint": "GET /sesi/online",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "utils",
+      "endpoint": "GET /nelayan/all",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "utils",
+      "endpoint": "GET /nelayan",
+      "query": ""
+    }
+    
+  },
+  {
+    "api_": {
+      "owned_by": "",
+      "endpoint": "GET /ikan",
+      "query": ""
+    }
+    
+  }
+]
