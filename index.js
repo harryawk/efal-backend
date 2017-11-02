@@ -95,6 +95,8 @@ app.get('/nelayan', require('./handler/nelayan_get'))
 
 app.get('/hello', require('./handler/hello'))
 
+app.get('/ikan', require('./handler/client/ikan_get'))
+
 server.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'))
 })
