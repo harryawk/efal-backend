@@ -35,7 +35,7 @@ exports.seed = function(knex, Promise) {
   var ikan_ikan = [
     'udang dogol',
     'layang deles',
-    'tongkol abu-abu',
+    'tongkol',
     'siro',
     'tuna mata besar',
     'cakalang',
@@ -44,27 +44,6 @@ exports.seed = function(knex, Promise) {
     'kakap',
     'teri',
     'tembang',
-    'japuh',
-    'kakap merah',
-    'swanggi',
-    'kurisi',
-    'kuniran',
-    'tenggiri batang',
-    'tetengkek',
-    'peperek topang',
-    'layang benggol',
-    'tongkol pisang-balaki',
-    'udang krosok',
-    'udang jambret',
-    'ikan lidah',
-    'kembung lelaki',
-    'paralolosi',
-    'anggola',
-    'peperek',
-    'udang jerbung',
-    'bilis',
-    'layur',
-    'bawal putih'
   ]
 
   var tasks = [
@@ -204,7 +183,7 @@ exports.seed = function(knex, Promise) {
                                                                   y++;
                                                                   var the_berat = random(100, 400)
                                                                   var the_url_gambar = faker.image.imageUrl()
-                                                                  var the_date = moment().add(j, 'days').minute(0).hour(0).second(0).format('YYYY-MM-DD')
+                                                                  var the_date = moment().subtract(j-1, 'days').minute(0).hour(0).second(0).format('YYYY-MM-DD')
                                                                   table_hasil_ikan.push({
                                                                       berat_total: the_berat,
                                                                       ikan_id: i,
@@ -222,14 +201,14 @@ exports.seed = function(knex, Promise) {
                                                                       tanggal: the_date
                                                                     })
                                                                     
-                                                                    console.log(y)
+                                                                  console.log(y)
                                                                     
-                                                                    the_status = random(1, 3)
-                                                                    if (the_status == 1) {
+                                                                  the_status = random(1, 3)
+                                                                  if (the_status == 1) {
                                                                       console.log('status 1')
                                                                       
                                                                     table_sesi.push({
-                                                                      id: y,
+                                                                      // id: y,
                                                                       tpi_id: j,
                                                                       hasil_ikan_id: j,
                                                                       ikan_id: i,
@@ -243,7 +222,7 @@ exports.seed = function(knex, Promise) {
                                                                   } else if (the_status == 2) {
                                                                     console.log('status 2')
                                                                     table_sesi.push({
-                                                                      id: y,
+                                                                      // id: y,
                                                                       tpi_id: j,
                                                                       hasil_ikan_id: j,
                                                                       ikan_id: i,
@@ -283,7 +262,7 @@ exports.seed = function(knex, Promise) {
                                                                     the_pemenang = random(1,10)
 
                                                                     table_sesi.push({
-                                                                      id: y,
+                                                                      // id: y,
                                                                       tpi_id: j,
                                                                       hasil_ikan_id: y,
                                                                       ikan_id: i,
