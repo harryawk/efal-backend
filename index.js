@@ -71,6 +71,10 @@ app.post('/sesi/selesai', require('./handler/admin/sesi_selesai_post'))
 
 app.post('/sesi/tawar', require('./handler/admin/sesi_tawar_post'))
 
+app.post('/daftar/admin', require('./handler/admin/daftar_admin'))
+
+app.post('/masuk/admin', require('./handler/admin/login_admin'))
+
 app.post('/daftar/sesi/online', require('./handler/loket/daftar_sesi_online_post'))
 
 app.post('/daftar/sesi/offline', require('./handler/loket/daftar_sesi_offline_post'))
@@ -106,6 +110,17 @@ server.listen(app.get('port'), function() {
 // });
 
 io.on('connection', function(socket) {
+    socket.emit('something', { sukses: true })
+    socket.on('bid', function(data) {
+        console.log('the_data')
+        console.log(data)
+        console.log('==================')
+    })
+})
+
+// Socket.io context switching
+
+io.of('/hello').on('connection', function(socket) {
     socket.emit('something', { sukses: true })
     socket.on('bid', function(data) {
         console.log('the_data')

@@ -16,7 +16,7 @@ module.exports = function (request, response) {
   console.log(body)
 
   var tpi_id
-  tpi.model.where({ nama: body['nama'] }).fetch().then(function(model) {
+  tpi.model.where({ nama: body['nama_tpi'] }).fetch().then(function(model) {
     tpi_id = model.get('id')
     admin.model.where({ nama_akun: body['nama_akun'] }).fetch().then(function (model) {
       if (!model) {
