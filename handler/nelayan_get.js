@@ -4,7 +4,9 @@ module.exports = function (request, response) {
 
   var body = request.query
 
-  nelayan.model.where({id: body['id_nelayan']}).fetch().then(function (model) {
+  console.log(body)
+
+  nelayan.model.where({tpi_id: body['id_tpi']}).fetch().then(function (model) {
     response.json(model.toJSON())
   })
 
