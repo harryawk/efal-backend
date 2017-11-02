@@ -34,7 +34,7 @@ module.exports = function (request, response) {
           email: body['email'],
           tpi_id: tpi_id,
           password: sha256(body['password'], '12345'),
-          api_key: sha256(body['nama_akun'], 'efal-backend'),
+          api_key: sha256(body['nama_akun'] + '_admin_' + body['nik'], 'efal-backend'),
         }).save().then(function (model) {
           if (model) {
             response.json({

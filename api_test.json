@@ -14,7 +14,7 @@
       "owned_by": "admin",
       "endpoint": "POST /hasil/nelayan/edit",
       "body": {
-
+        
       }
     }
     
@@ -24,7 +24,7 @@
       "owned_by": "admin",
       "endpoint": "POST /hasil/nelayan/delete",
       "body": {
-
+        
       }
     }
     
@@ -34,7 +34,14 @@
       "owned_by": "client",
       "endpoint": "POST /masuk/peserta",
       "body": {
-
+        "nama_akun": "some",
+        "password": "12345"
+      },
+      "response_example": {
+        "sukses": true,
+        "api_key": "8834b2eedfdac7dada91ba81dba67cfd9f5a424ec580d6cfcf3b7dca37ec3cd3",
+        "id_peserta": 12,
+        "pesan": "Berhasil"
       }
     }
     
@@ -44,7 +51,18 @@
       "owned_by": "client",
       "endpoint": "POST /daftar/peserta",
       "body": {
-
+        "nik": "1234567890",
+        "nama_lengkap": "somsoms",
+        "nama_akun": "some",
+        "nomor_telepon": "82320557973",
+        "email": "aditiopangestu@gmail.com",
+        "password": "12345"
+      },
+      "response_example": {
+        "sukses": true,
+        "api_key": "8834b2eedfdac7dada91ba81dba67cfd9f5a424ec580d6cfcf3b7dca37ec3cd3",
+        "id_peserta": 12,
+        "pesan": "Berhasil"
       }
     }
     
@@ -114,7 +132,20 @@
       "owned_by": "admin",
       "endpoint": "POST /daftar/admin",
       "body": {
-
+        "nama_tpi": "Kaylee Spinka",
+        "nik": "1234567890",
+        "nama_lengkap": "somsoms",
+        "nama_akun": "some",
+        "nomor_telepon": "82320557973",
+        "email": "aditiopangestu@gmail.com",
+        "password": "12345"
+      },
+      "response_example": {
+        "sukses": true,
+        "api_key": "45f3625ee67a547c4f5e10424a391f890d252d9bb62f314ab45f64d88e28d208",
+        "id_admin": 42,
+        "id_tpi": 1,
+        "pesan": "Berhasil"
       }
     }
     
@@ -124,7 +155,14 @@
       "owned_by": "admin",
       "endpoint": "POST /masuk/admin",
       "body": {
-
+        "nama_akun": "some",
+        "password": "12345"
+      },
+      "response_example": {
+        "sukses": true,
+        "api_key": "45f3625ee67a547c4f5e10424a391f890d252d9bb62f314ab45f64d88e28d208",
+        "id_admin": 42,
+        "pesan": "Berhasil"
       }
     }
     

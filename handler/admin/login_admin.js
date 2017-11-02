@@ -9,7 +9,7 @@ function sha256(input, secret) {
 }
 
 module.exports = function (request, response) {
-  var admin = require('../../model/admin')
+  var admin = require('../../model/admin_tpi')
 
   var body = request.body
   console.log(body)

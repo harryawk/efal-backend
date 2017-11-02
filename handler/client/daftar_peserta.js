@@ -23,7 +23,7 @@ module.exports = function (request, response) {
 				nomor_telepon: body['nomor_telepon'],
 				email: body['email'],
 				password: sha256(body['password'], '12345'),
-				api_key: sha256(body['nama_akun'], 'efal-backend')
+				api_key: sha256(body['nama_akun'] + '_nelayan_' + body['nik'], 'efal-backend')
 			}).save().then(function (model) {
 		        if (model) {
 		        	response.json({
