@@ -47,8 +47,8 @@ module.exports = function (request, response) {
           }
         }).catch(function (error) {
           console.log('Transaction failed')
-          console.log(err)
-          response.status(500).send("Error while saving: " + err)
+          console.log(error)
+          response.status(500).send("Error while saving: " + error)
         })
       } else {
         response.json({
