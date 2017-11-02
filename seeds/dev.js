@@ -204,6 +204,10 @@ exports.seed = function(knex, Promise) {
                                                                   console.log(y)
                                                                     
                                                                   the_status = random(1, 3)
+                                                                  if (moment().subtract(1, 'days') > moment(the_date)) {
+                                                                    console.log('status---------------------3')
+                                                                    the_status = 3
+                                                                  }
                                                                   if (the_status == 1) {
                                                                       console.log('status 1')
                                                                       
@@ -291,7 +295,7 @@ exports.seed = function(knex, Promise) {
                                                                         if (current_tawaran > the_max_tawaran) {
                                                                           current_tawaran = random(1, current_tawaran) * 1000
                                                                           if (c == the_pemenang && b == 3) {
-                                                                            current_tawaran = the_max_tawarans
+                                                                            current_tawaran = the_max_tawaran
                                                                           }
                                                                         }
 
@@ -300,7 +304,7 @@ exports.seed = function(knex, Promise) {
                                                                           peserta_id: 1,
                                                                           harga_tawaran: current_tawaran,
                                                                           berat_kebutuhan: random(10, the_berat),
-                                                                          kode_kemenangan: c == the_pemenang ? nama_akun +'_'+ y : null
+                                                                          kode_kemenangan: c == the_pemenang ? user_name +'_'+ y : null
                                                                         })
                                                                       }
                                                                     }
