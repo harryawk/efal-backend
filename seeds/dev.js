@@ -193,11 +193,15 @@ exports.seed = function(knex, Promise) {
 
                                                               var table_hasil_ikan = []
                                                               var table_hasil_nelayan = []
+                                                              var table_sesi = []
+                                                              var table_pendaftar = []
+                                                              var table_penawaran = []
 
                                                               var y = 0
                                                               for (var i = 1; i <= 10; i++) {
                                                                 for (var j = 1; j <= 10; j++) {
                                                                   var x = i - 1
+                                                                  y++;
                                                                   var the_berat = random(100, 400)
                                                                   var the_url_gambar = faker.image.imageUrl()
                                                                   var the_date = moment().add(j, 'days').minute(0).hour(0).second(0).format('YYYY-MM-DD')
@@ -207,7 +211,6 @@ exports.seed = function(knex, Promise) {
                                                                       tpi_id: j,
                                                                       tanggal: the_date
                                                                     })
-                                                                  y++;
                                                                   console.log('Insert HasilNelayan')
                                                                   table_hasil_nelayan.push({
                                                                       id: y,
@@ -218,14 +221,166 @@ exports.seed = function(knex, Promise) {
                                                                       berat: the_berat,
                                                                       tanggal: the_date
                                                                     })
+                                                                    
+                                                                    console.log(y)
+                                                                    
+                                                                    the_status = random(1, 3)
+                                                                    if (the_status == 1) {
+                                                                      console.log('status 1')
+                                                                      
+                                                                    table_sesi.push({
+                                                                      id: y,
+                                                                      tpi_id: j,
+                                                                      hasil_ikan_id: j,
+                                                                      ikan_id: i,
+                                                                      tanggal_sesi: the_date,
+                                                                      berat: the_berat,
+                                                                      status: the_status,
+                                                                      mulai_harga: random(1,50)*1000,
+                                                                      jam_mulai: moment(the_date).hour(random(7, 13)).minute(0).second(0).format('YYYY-MM-DD HH:mm:ss'),
+                                                                      jam_selesai: moment(the_date).hour(random(14, 17)).minute(0).second(0).format('YYYY-MM-DD HH:mm:ss')
+                                                                    })
+                                                                  } else if (the_status == 2) {
+                                                                    console.log('status 2')
+                                                                    table_sesi.push({
+                                                                      id: y,
+                                                                      tpi_id: j,
+                                                                      hasil_ikan_id: j,
+                                                                      ikan_id: i,
+                                                                      tanggal_sesi: the_date,
+                                                                      berat: the_berat,
+                                                                      status: the_status,
+                                                                      mulai_harga: random(1, 50) * 1000,
+                                                                      jam_mulai: moment(the_date).hour(random(7, 13)).minute(0).second(0).format('YYYY-MM-DD HH:mm:ss'),
+                                                                      jam_selesai: moment(the_date).hour(random(14, 17)).minute(0).second(0).format('YYYY-MM-DD HH:mm:ss')
+                                                                    })
+                                                                    
+
+                                                                    for (var a = 1; a <= 10; a++) {
+                                                                      console.log({
+                                                                        sesi_id: y,
+                                                                        peserta_id: a
+                                                                      })
+                                                                      table_pendaftar.push({
+                                                                        sesi_id: y,
+                                                                        peserta_id: a
+                                                                      })
+                                                                    }
+
+                                                                    for (var b = 0; b < 4; b++) {
+                                                                      for (var c = 1; c <= 10; c++) {
+
+                                                                        table_penawaran.push({
+                                                                          sesi_id: y,
+                                                                          peserta_id: 1,
+                                                                          harga_tawaran: random(1,100) * 1000,
+                                                                          berat_kebutuhan: random(10, the_berat)
+                                                                        })
+                                                                      }
+                                                                    }
+                                                                  } else if (the_status == 3) {
+                                                                    console.log('status 3')
+                                                                    the_pemenang = random(1,10)
+
+                                                                    table_sesi.push({
+                                                                      id: y,
+                                                                      tpi_id: j,
+                                                                      hasil_ikan_id: y,
+                                                                      ikan_id: i,
+                                                                      tanggal_sesi: the_date,
+                                                                      berat: the_berat,
+                                                                      status: the_status,
+                                                                      mulai_harga: random(1, 50) * 1000,
+                                                                      jam_mulai: moment(the_date).hour(random(7, 13)).minute(0).second(0).format('YYYY-MM-DD HH:mm:ss'),
+                                                                      jam_selesai: moment(the_date).hour(random(14, 17)).minute(0).second(0).format('YYYY-MM-DD HH:mm:ss'),
+                                                                      akhir_harga: random(50, 100) * 1000,
+                                                                      pemenang_id: the_pemenang
+                                                                    })
+
+                                                                    for (var a = 1; a <= 10; a++) {
+                                                                      table_pendaftar.push({
+                                                                        sesi_id: y,
+                                                                        peserta_id: a
+                                                                      })
+                                                                    }
+
+                                                                    var the_max_tawaran = random(1, 100) * 1000
+                                                                    for (var b = 0; b < 4; b++) {
+                                                                      for (var c = 1; c <= 10; c++) {
+                                                                        var current_tawaran = random(1, 100) * 1000
+
+                                                                        if (current_tawaran > the_max_tawaran) {
+                                                                          current_tawaran = random(1, current_tawaran) * 1000
+                                                                          if (c == the_pemenang && b == 3) {
+                                                                            current_tawaran = the_max_tawarans
+                                                                          }
+                                                                        }
+
+                                                                        table_penawaran.push({
+                                                                          sesi_id: y,
+                                                                          peserta_id: 1,
+                                                                          harga_tawaran: current_tawaran,
+                                                                          berat_kebutuhan: random(10, the_berat),
+                                                                          kode_kemenangan: c == the_pemenang ? nama_akun +'_'+ y : null
+                                                                        })
+                                                                      }
+                                                                    }
+
+                                                                  }
                                                                 }
                                                               }
-
+                                                              
                                                               return knex('hasil_ikan').insert(table_hasil_ikan).then(function(c) {
                                                                 console.log('insert table hasil_ikan')
                                                                 return knex('hasil_nelayan').insert(table_hasil_nelayan).then(function(c) {
                                                                   console.log('insert hasil_nelayan')
-                                                                  
+                                                                  if (table_sesi != []) {
+                                                                    return knex('sesi').insert(table_sesi).then(function(c) {
+                                                                      console.log('done insert sesi')
+                                                                      if (table_pendaftar != []) {
+                                                                        return knex('pendaftar').insert(table_pendaftar).then(function(c) {
+                                                                          console.log('done insert pendaftar')
+                                                                          if (table_penawaran != []) {
+                                                                            return knex('penawaran').insert(table_penawaran).then(function(c) {
+                                                                              console.log('done insert pendaftar')
+
+                                                                              var table_hubungan_tpi = []
+
+                                                                              for (var i = 1; i <= 10; i++ ) {
+                                                                                
+                                                                                var count_terhubung = random(1,5)
+
+                                                                                for (var j = 0; j < count_terhubung; j++) {
+
+                                                                                  var tpi_terhubung = random(1,10)
+                                                                                  var the_jarak = random(10,30)
+                                                                                  if (i != tpi_terhubung && !_.find(table_hubungan_tpi, {tpi_id: i, tpi_terhubung_id: tpi_terhubung})) {
+                                                                                    table_hubungan_tpi.push({
+                                                                                      tpi_id: i,
+                                                                                      tpi_terhubung_id: tpi_terhubung,
+                                                                                      jarak: the_jarak
+                                                                                    })
+                                                                                    table_hubungan_tpi.push({
+                                                                                      tpi_id: tpi_terhubung,
+                                                                                      tpi_terhubung_id: i,
+                                                                                      jarak: the_jarak
+                                                                                    })
+                                                                                  }
+
+                                                                                }
+                                                                              }
+                                                                              return knex('hubungan_tpi').insert(table_hubungan_tpi).then(function(c) {
+                                                                                console.log('done insert hubungan_tpi')
+                                                                              })
+                                                                            })
+                                                                          }
+                                                                        }).catch(function(err) {
+                                                                          console.log('ERROR')
+                                                                          console.log(err)
+                                                                        })
+                                                                      }
+                                                                    })
+                                                                  }
                                                                 })
                                                               })
                                                             })
